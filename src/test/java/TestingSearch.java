@@ -1,18 +1,15 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by voyo on 24.10.2016.
- */
+
 public class TestingSearch {
-    WebDriver driver;
-    String searchfield = "РОБОЧИЙ ЧАС — УКРАЇНЦЯМ!";
-    String textInResult = new String("СКОРОЧЕНИЙ європейський РОБОЧИЙ ЧАС — УКРАЇНЦЯМ!");
+    private WebDriver driver;
+    private final String searchfield = "РОБОЧИЙ ЧАС — УКРАЇНЦЯМ!";
+    private final String textInResult = "СКОРОЧЕНИЙ європейський РОБОЧИЙ ЧАС — УКРАЇНЦЯМ!";
 
     @BeforeClass
     public void seting() {

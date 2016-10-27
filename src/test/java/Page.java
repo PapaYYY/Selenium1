@@ -4,20 +4,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by voyo on 24.10.2016.
- */
+
 public class Page {
 
     private WebDriver driver;
-    private List<WebElement> rerultsList;
+    private List<WebElement> resultsList;
 
     public List<WebElement> getResultsList() {
-        return rerultsList;
+        return resultsList;
     }
 
     public WebDriver getDriver() {
@@ -29,16 +27,16 @@ public class Page {
     }
 
     public void setResultsList() {
-        this.rerultsList = driver.findElements(By.xpath("//a[ancestor::div[@class='pet_title']]"));
+        this.resultsList = driver.findElements(By.xpath("//a[ancestor::div[@class='pet_title']]"));
             }
 
     public Page(WebDriver driver, List<WebElement> resultsList) {
         this.driver = driver;
-        this.rerultsList = resultsList;
+        this.resultsList = resultsList;
     }
 
     //additional method to check that element of the page is exist
-    public boolean isElementPresent(By locator) {
+    private boolean isElementPresent(By locator) {
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         boolean result = driver.findElements(locator).size() > 0;
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
@@ -59,7 +57,7 @@ public class Page {
     // method that returns link from pool of results with text that we need
     public String getLinkContains(String example) {
         String result = "https://petition.president.gov.ua/";
-        for (WebElement el : rerultsList) {
+        for (WebElement el : resultsList) {
             if (el.getText().contains(example)) result = el.getAttribute("href");
         }
         return result;
@@ -76,7 +74,7 @@ public class Page {
         waitResultPage("//h1[text()='ВСІ ЕЛЕКТРОННІ ПЕТИЦІЇ']");
 
         list = driver.findElements(By.xpath("//a[ancestor::div[@class='pet_title']]"));
-        return new ResultPage(driver, (ArrayList<WebElement>) list);
+        return new ResultPage(driver, list);
 
 
     }
