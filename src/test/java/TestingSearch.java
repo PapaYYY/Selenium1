@@ -28,7 +28,7 @@ public class TestingSearch {
         Page page1 = new Page(driver, null);
         Page page2 = page1.search(searchfield);
 
-        Assert.assertTrue(page2.getResultsList().size() > 0, "No search results!");
+        Assert.assertTrue(!page2.getResultsList().isEmpty(), "No search results!");
         System.out.println(page2.getResultsList().size() + " search results was found.");
 
         driver.get(page2.getLinkContains(textInResult));
